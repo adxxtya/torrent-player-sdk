@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+
+    <div id="loading">Loading...</div>
+    <button id="button">Play</button>
+    <div id="player"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+    <script>
+        var button = document.getElementById('button');
+        var player = document.getElementById('player');
+        var loading = document.getElementById('loading');
+        player.style.display = 'none';
+        loading.style.display = 'none';
+
+        button.addEventListener('click', function () {
+            button.style.display = 'none';
+            loading.style.display = 'block';
+            initPlayer();
+        });
+
+        function initPlayer() {
+            window.webtor = window.webtor || [];
+            window.webtor.push({
+                id: 'player',
+                width: '100%',
+                magnet: 'magnet:?xt=urn:btih:A024058B915B7291785C2B57DA6E07DFAB568C35&dn=Midsommar%20(2019)%20%5BBluRay%5D%20%5B720p%5D&tr=udp%3A%2F%2F185.193.125.139%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fmovies.zsw.ca%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.0x.tf%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce',
+                on: function (e) {
+                    if (e.name == window.webtor.INITED) {
+                        e.player.play();
+                        player.style.display = 'block';
+                        loading.style.display = 'none';
+                    }
+                },
+            });
+        }
+
+
+    </script>
+</body>
+</html>
